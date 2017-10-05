@@ -8,11 +8,14 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<label>Digite um nome de usuário:</label>
-	<input type="text" value="">
-	<button onclick="search()">Pesquisar</button>
-	
-	<div id="userInfo" style="display: none;">
+
+	<div class="input-group col-lg-4">
+		<input type="text" class="form-control" placeholder="Digite um nome de usuário...">
+		<span class="input-group-btn">
+			<button class="btn btn-secondary" type="button" onclick="search()">Buscar</button>
+		</span>
+	</div>
+	<div id="userInfo">
 		<div><label>username: </label>  <span id="username"></span></div>
 		<div><label>seguidores: </label><span id="followers"></span></div>
 		<div><label>seguidos: </label>	<span id="following"></span></div>

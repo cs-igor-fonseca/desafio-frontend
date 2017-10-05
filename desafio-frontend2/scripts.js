@@ -27,7 +27,8 @@ function search(){
         displayUserInfo();
     })
     .fail(function(){
-        //mostrar msg not found
+        hideElement("#userInfo");
+        $("#userInfo").parent().append( "<p>Nenhum usuário encontrado</p>" );
     })
 }
 
@@ -45,9 +46,15 @@ function displayUserInfo(){
     jQuery("#avatarUrl").attr("src", avatarUrl);
     jQuery("#userEmail").html(userEmail);
     jQuery("#userBio").html(userBio);
-    toggleVisibility("#userInfo");
+    showElement("#userInfo");
 }
 
-function toggleVisibility(id){
-    $(id).toggle();
+function hideElement(id){
+    if($(id).is(":visible"))
+        $(id).toggle();
+}
+
+function showElement(id){
+    if($(id).is(":hidden"))
+        $(id).toggle();
 }
