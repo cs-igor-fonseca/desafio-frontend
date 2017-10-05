@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<label>Digite um nome de usuário:</label>
+	<input type="text" value="">
+	<button onclick="search()">Pesquisar</button>
+	
+	<div id="userInfo" style="display: none;">
+		<div><label>username: </label>  <span id="username"></span></div>
+		<div><label>seguidores: </label><span id="followers"></span></div>
+		<div><label>seguidos: </label>	<span id="following"></span></div>
+		<div><label>avatar: </label>	<img id="avatarUrl" src="" alt="avatar" height="42" width="42"></div>
+		<div><label>email: </label>		<span id="userEmail"></span></div>
+		<div><label>bio: </label>		<span id="userBio"></span></div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type = "text/javascript" src="scripts.js"></script>
+</body>
+</html>
