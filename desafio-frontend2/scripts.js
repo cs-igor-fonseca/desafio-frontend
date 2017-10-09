@@ -19,7 +19,7 @@ function search(){
     })
     .fail(function(){
         hideElement("#userInfo");
-        //jQuery("#userInfo").parent().append( "<p>Nenhum usuário encontrado</p>" );
+        showElement("#msgNotFound");
     })
 }
 
@@ -42,6 +42,7 @@ function displayUserInfo(){
     jQuery("#userEmail").html(userEmail);
     jQuery("#userBio").html(userBio);
     jQuery("#repos").html(nRepos);
+    hideElement("#msgNotFound");
     showElement("#userInfo");
 }
 

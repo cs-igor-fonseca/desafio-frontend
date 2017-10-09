@@ -165,3 +165,8 @@
 #userInfo {
     display: none
 }
+
+#msgNotFound {
+    display: none;
+    margin: 0px 10px 0px 10px;
+}
