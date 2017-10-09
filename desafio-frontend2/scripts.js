@@ -7,19 +7,10 @@ var nFollowing;
 var avatarUrl;
 var userEmail;
 var userBio;
+var nRepos;
 
 function search(){
     var textValue = jQuery("input").val();
-    //get user followers/following info
-    jQuery.getJSON(apiUrl + textValue + "/followers")
-    .done(function(data){
-        nFollowers = Object.keys(data).length;
-    })
-    jQuery.getJSON(apiUrl + textValue + "/following")
-    .done(function(data){
-        nFollowing = Object.keys(data).length;
-    })
-
     //get user basic info 
     jQuery.getJSON(apiUrl + textValue)
     .done(function(data){
@@ -28,33 +19,38 @@ function search(){
     })
     .fail(function(){
         hideElement("#userInfo");
-        $("#userInfo").parent().append( "<p>Nenhum usuário encontrado</p>" );
+        //jQuery("#userInfo").parent().append( "<p>Nenhum usuário encontrado</p>" );
     })
 }
 
 function fillUserInfo(data){
-    username  = data.login;
-    avatarUrl = data.avatar_url;
-    userEmail = data.email;
-    userBio   = data.bio;
+    username   = data.login;
+    avatarUrl  = data.avatar_url;
+    userEmail  = data.email;
+    userBio    = data.bio;
+    nFollowers = data.followers;
+    nFollowing = data.following;
+    nRepos     = data.public_repos;
+    // console.dir(data);
 }
 
 function displayUserInfo(){
     jQuery("#username").html(username);
     jQuery("#followers").html(nFollowers);
     jQuery("#following").html(nFollowing);
-    jQuery("#avatarUrl").attr("src", avatarUrl);
+    jQuery("#avatar").attr("src", avatarUrl);
     jQuery("#userEmail").html(userEmail);
     jQuery("#userBio").html(userBio);
+    jQuery("#repos").html(nRepos);
     showElement("#userInfo");
 }
 
 function hideElement(id){
-    if($(id).is(":visible"))
-        $(id).toggle();
+    if(jQuery(id).is(":visible"))
+        jQuery(id).toggle();
 }
 
 function showElement(id){
-    if($(id).is(":hidden"))
-        $(id).toggle();
+    if(jQuery(id).is(":hidden"))
+        jQuery(id).toggle();
 }

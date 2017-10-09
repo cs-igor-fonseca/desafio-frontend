@@ -3,26 +3,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Title</title>
+  <title>Desafio Front-End</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+	<div class="content">
 
-	<div class="input-group col-lg-4">
-		<input type="text" class="form-control" placeholder="Digite um nome de usuário...">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" onclick="search()">Buscar</button>
-		</span>
+		<div id="searchBar" class="input-group input-group-custom">
+			<input type="text" class="form-control" placeholder="Procure um usuário...">
+			<span class="input-group-btn">
+				<button class="btn btn-secondary" type="button" onclick="search()">Buscar</button>
+			</span>
+		</div>
+		<div id="userInfo" class="center">
+			<div class="profile">
+				<div class="image">
+					<div class="circle-1"></div>
+					<div class="circle-2"></div>
+					<img id="avatar" src="" alt="avatar" width="70" height="70">
+				</div>
+				<div id="username" class="name"></div>
+				<div id="userEmail" class="info"></div>
+				<div id="userBio" class="info"></div>
+				<div class="actions">
+					<button class="btn">Repositories</button>
+				</div>
+			</div>
+			<div class="stats">
+				<div class="box">
+					<span id="followers" class="value"></span>
+					<span>seguidores</span>
+				</div>
+				<div class="box">
+					<span id="following" class="value"></span>
+					<span>seguindo</span>
+				</div>
+				<div class="box">
+					<span id="repos" class="value"></span>
+					<span>repos</span>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id="userInfo">
-		<div><label>username: </label>  <span id="username"></span></div>
-		<div><label>seguidores: </label><span id="followers"></span></div>
-		<div><label>seguidos: </label>	<span id="following"></span></div>
-		<div><label>avatar: </label>	<img id="avatarUrl" src="" alt="avatar" height="42" width="42"></div>
-		<div><label>email: </label>		<span id="userEmail"></span></div>
-		<div><label>bio: </label>		<span id="userBio"></span></div>
-	</div>
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type = "text/javascript" src="scripts.js"></script>
 </body>
