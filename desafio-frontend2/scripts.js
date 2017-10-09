@@ -9,18 +9,32 @@ var userEmail;
 var userBio;
 var nRepos;
 
+//listening to enter keypress
+$("#searchInput").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#searchBtn").click();
+    }
+});
+
 function search(){
     var textValue = jQuery("input").val();
-    //get user basic info 
-    jQuery.getJSON(apiUrl + textValue)
-    .done(function(data){
-        fillUserInfo(data);
-        displayUserInfo();
-    })
-    .fail(function(){
-        hideElement("#userInfo");
-        showElement("#msgNotFound");
-    })
+    if(textValue.length > 0){
+        try {
+            jQuery.getJSON(apiUrl + textValue)
+            .done(function(data){
+                fillUserInfo(data);
+                displayUserInfo();
+            }) 
+            .fail(function(){
+                hideElement("#userInfo");
+                showElement("#msgNotFound");
+            })
+        } catch (error) {
+            console.log(error);
+            hideElement("#userInfo");
+            showElement("#msgNotFound");
+        }
+    }
 }
 
 function fillUserInfo(data){
