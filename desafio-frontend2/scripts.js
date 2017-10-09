@@ -69,3 +69,8 @@ function showElement(id){
     if(jQuery(id).is(":hidden"))
         jQuery(id).toggle();
 }
+
+function callReposPage(){
+    //apiUrl + "/" + username + "/repos"
+    window.location.href = "repos.html";
+}

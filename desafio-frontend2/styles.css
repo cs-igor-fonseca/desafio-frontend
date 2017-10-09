@@ -163,7 +163,8 @@
 }
 
 #userInfo {
-    display: none
+    display: none;
+    border-style: outset;
 }
 
 #msgNotFound {
