@@ -19,21 +19,15 @@ $("#searchInput").keyup(function(event){
 function search(){
     var textValue = jQuery("input").val();
     if(textValue.length > 0){
-        try {
-            jQuery.getJSON(apiUrl + textValue)
-            .done(function(data){
-                fillUserInfo(data);
-                displayUserInfo();
-            }) 
-            .fail(function(){
-                hideElement("#userInfo");
-                showElement("#msgNotFound");
-            })
-        } catch (error) {
-            console.log(error);
+        jQuery.getJSON(apiUrl + textValue)
+        .done((data) => {
+            fillUserInfo(data);
+            displayUserInfo();
+        })
+        .fail(() => {
             hideElement("#userInfo");
             showElement("#msgNotFound");
-        }
+        })
     }
 }
 
@@ -71,6 +65,44 @@ function showElement(id){
 }
 
 function callReposPage(){
-    //apiUrl + "/" + username + "/repos"
-    window.location.href = "repos.html";
+    if (nRepos > 0) {
+        // window.location = "repos.html";
+        var reposUrl = apiUrl + username + "/repos";
+        // console.log(reposUrl);
+        jQuery.getJSON(reposUrl)
+            .done(function (data) {
+                console.dir(data);
+                createReposList(data);
+            })
+    }else{
+        alert("O usuário não possui nenhum repositório");
+    }
+}
+
+function createReposList(objsArray){
+    var reposArray = new Array();
+    for (var i = 0; i < objsArray.length; i++) {
+        var tmp = {
+            name: objsArray[i].name,
+            stars: objsArray[i].stargazers_count,
+            description: objsArray[i].description,
+            language: objsArray[i].language,
+            url: objsArray[i].html_url
+        } 
+        reposArray.push(tmp);
+    }
+        
+    generateReposHtmlList(reposArray);
+}
+
+function generateReposHtmlList(reposArray) {
+    //order list
+    reposArray.sort(function(a,b){
+        return b.stars - a.stars;
+    });
+    var listsStr = "";
+    for (var i = 0; i < reposArray.length; i++) {
+        listsStr += "<li><p>" + reposArray[i].name + "</p></li>";
+    }
+    jQuery("ol").append(listsStr);
 }

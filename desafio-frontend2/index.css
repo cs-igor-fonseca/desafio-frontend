@@ -126,7 +126,7 @@
   transition: all .4s ease-in-out;
 }
 .stats .box:hover {
-  background: #E1CFC2;
+  background: #fa8072;
   cursor: pointer;
 }
 .stats .box:nth-child(2) {
