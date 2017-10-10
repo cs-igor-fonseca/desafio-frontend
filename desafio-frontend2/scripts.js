@@ -66,17 +66,21 @@ function showElement(id){
 
 function callReposPage(){
     if (nRepos > 0) {
-        // window.location = "repos.html";
-        var reposUrl = apiUrl + username + "/repos";
-        // console.log(reposUrl);
-        jQuery.getJSON(reposUrl)
-            .done(function (data) {
-                console.dir(data);
-                createReposList(data);
-            })
+        window.location = "repos.html?user=" + username;
     }else{
         alert("O usuário não possui nenhum repositório");
     }
+}
+
+function getReposFromUser() {
+    var user = window.location.search.substring(1).split("=")[1];
+    var reposUrl = apiUrl + user + "/repos";
+    console.log(reposUrl);
+    jQuery.getJSON(reposUrl)
+        .done(function (data) {
+            console.dir(data);
+            createReposList(data);
+        })
 }
 
 function createReposList(objsArray){
