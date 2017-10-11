@@ -88,7 +88,7 @@ function createReposList(objsArray){
     for (var i = 0; i < objsArray.length; i++) {
         var tmp = {
             name: objsArray[i].name,
-            stars: objsArray[i].stargazers_count,
+            rating: objsArray[i].stargazers_count,
             description: objsArray[i].description,
             language: objsArray[i].language,
             url: objsArray[i].html_url
@@ -101,11 +101,19 @@ function createReposList(objsArray){
 
 function generateReposHtmlList() {
     var listsStr = "";
+    console.dir(reposArray);
     for (var i = 0; i < reposArray.length; i++) {
-        listsStr += "<li><p>" + reposArray[i].name + "</p></li>";
+        // listsStr += "<li><p>" + reposArray[i].name + "</p></li>";
+        listsStr += "<a class=\"accordion-section-title\" href=\"#accordion-" + i + "\">" + reposArray[i].name + "</a><div id=\"accordion-" 
+        + i +"\" class=\"accordion-section-content\"><p id=\"description\">" 
+        + reposArray[i].description + "</p><p id=\"rating\">"
+        + reposArray[i].rating +" estrelas</p><p id=\"lang\">"
+        + reposArray[i].language +"</p><a id=\"repoLink\" href=\" " + reposArray[i].url + "\">Ir para repositório</a></div>"
     }
-    jQuery("ol").append(listsStr);
+    jQuery(".accordion-section").append(listsStr);
+    accordionMovement();
 }
+
 
 function orderAsc(){
     reposArray.sort(function(a,b){
@@ -122,12 +130,37 @@ function orderDesc() {
 function toggleListOrder(){
     if(document.getElementById('checkOrder').checked){
         orderAsc();
-        $("li").remove();
+        $(".accordion-section").children().remove();
         generateReposHtmlList();
     }
     else{
         orderDesc();
-        $("li").remove();
+        $(".accordion-section").children().remove();
         generateReposHtmlList();
     }
+}
+
+function accordionMovement() {
+    function close_accordion_section() {
+        $('.accordion .accordion-section-title').removeClass('active');
+        $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+    }
+ 
+    $('.accordion-section-title').click(function(e) {
+        // Grab current anchor value
+        var currentAttrValue = $(this).attr('href');
+ 
+        if($(e.target).is('.active')) {
+            close_accordion_section();
+        }else {
+            close_accordion_section();
+ 
+            // Add active class to section title
+            $(this).addClass('active');
+            // Open up the hidden content panel
+            $('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
+        }
+ 
+        e.preventDefault();
+    });
 }
