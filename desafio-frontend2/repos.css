@@ -78,3 +78,23 @@ transition: all .3s ease-out;
 left: -.5em;
 border-left-color: #fa8072;				
 }
+
+
+h2 { 
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 32px;
+    margin: 20px 0 35px;
+    text-align: center;
+ }
+ 
+ .rectangle-list{
+    margin: 0 auto;
+}
+
+.checkbox{
+    position: relative;
+    left: 35%;
+}

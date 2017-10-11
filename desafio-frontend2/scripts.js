@@ -8,6 +8,7 @@ var avatarUrl;
 var userEmail;
 var userBio;
 var nRepos;
+var reposArray = new Array();
 
 //listening to enter keypress
 $("#searchInput").keyup(function(event){
@@ -74,17 +75,16 @@ function callReposPage(){
 
 function getReposFromUser() {
     var user = window.location.search.substring(1).split("=")[1];
+    jQuery("#username").html(user + " repositories");
     var reposUrl = apiUrl + user + "/repos";
-    console.log(reposUrl);
     jQuery.getJSON(reposUrl)
         .done(function (data) {
-            console.dir(data);
+            // console.dir(data);
             createReposList(data);
         })
 }
 
 function createReposList(objsArray){
-    var reposArray = new Array();
     for (var i = 0; i < objsArray.length; i++) {
         var tmp = {
             name: objsArray[i].name,
@@ -95,18 +95,39 @@ function createReposList(objsArray){
         } 
         reposArray.push(tmp);
     }
-        
-    generateReposHtmlList(reposArray);
+    orderDesc();
+    generateReposHtmlList();
 }
 
-function generateReposHtmlList(reposArray) {
-    //order list
-    reposArray.sort(function(a,b){
-        return b.stars - a.stars;
-    });
+function generateReposHtmlList() {
     var listsStr = "";
     for (var i = 0; i < reposArray.length; i++) {
         listsStr += "<li><p>" + reposArray[i].name + "</p></li>";
     }
     jQuery("ol").append(listsStr);
+}
+
+function orderAsc(){
+    reposArray.sort(function(a,b){
+        return a.stars - b.stars;
+    });
+}
+
+function orderDesc() {
+    reposArray.sort(function(a,b){
+        return b.stars - a.stars;
+    });
+}
+
+function toggleListOrder(){
+    if(document.getElementById('checkOrder').checked){
+        orderAsc();
+        $("li").remove();
+        generateReposHtmlList();
+    }
+    else{
+        orderDesc();
+        $("li").remove();
+        generateReposHtmlList();
+    }
 }
