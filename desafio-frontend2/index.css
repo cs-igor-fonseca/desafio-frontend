@@ -119,14 +119,14 @@
   box-sizing: border-box;
   width: 120px;
   height: 99px;
-  background: #F5E8DF;
+  background: #333;
   text-align: center;
   padding-top: 28px;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
 .stats .box:hover {
-  background: #fa8072;
+  background: #4c4c4c;
   cursor: pointer;
 }
 .stats .box:nth-child(2) {
@@ -134,6 +134,7 @@
 }
 .stats span {
   display: block;
+  color: #fff;
 }
 .stats .value {
   font-size: 18px;
