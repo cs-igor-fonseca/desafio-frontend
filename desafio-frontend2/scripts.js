@@ -101,13 +101,12 @@ function createReposList(objsArray){
 
 function generateReposHtmlList() {
     var listsStr = "";
-    console.dir(reposArray);
     for (var i = 0; i < reposArray.length; i++) {
         // listsStr += "<li><p>" + reposArray[i].name + "</p></li>";
         listsStr += "<a class=\"accordion-section-title\" href=\"#accordion-" + i + "\">" + reposArray[i].name + "</a><div id=\"accordion-" 
-        + i +"\" class=\"accordion-section-content\"><p id=\"description\">" 
-        + reposArray[i].description + "</p><p id=\"rating\">"
-        + reposArray[i].rating +" estrelas</p><p id=\"lang\">"
+        + i +"\" class=\"accordion-section-content\"><p id=\"description\"><b>Descrição:</b> " 
+        + (reposArray[i].description || "-") + "</p><p id=\"rating\"><b>Estrelas:</b> "
+        + reposArray[i].rating +"</p><p id=\"lang\"><b>Linguagem:</b> "
         + reposArray[i].language +"</p><a id=\"repoLink\" href=\" " + reposArray[i].url + "\">Ir para repositório</a></div>"
     }
     jQuery(".accordion-section").append(listsStr);
@@ -117,13 +116,13 @@ function generateReposHtmlList() {
 
 function orderAsc(){
     reposArray.sort(function(a,b){
-        return a.stars - b.stars;
+        return a.rating - b.rating;
     });
 }
 
 function orderDesc() {
     reposArray.sort(function(a,b){
-        return b.stars - a.stars;
+        return b.rating - a.rating;
     });
 }
 
